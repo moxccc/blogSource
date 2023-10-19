@@ -1,6 +1,6 @@
 ---
 title: Vue3 使用ArcoDesign
-index_img: /img/acrodesign/vue.png
+# index_img: /img/acrodesign/vue.png
 categories:
 - Vue3
 tags:

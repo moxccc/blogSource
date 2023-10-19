@@ -1,6 +1,6 @@
 ---
 title: 搭建自己的chatgpt
-index_img: /img/acrodesign/docker.png
+# index_img: /img/acrodesign/docker.png
 categories:
 - Docker
 tags:

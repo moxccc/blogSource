@@ -1,6 +1,6 @@
 ---
 title: Linux下使用Let's Encrypt配置Nginx SSL证书
-index_img: /img/acrodesign/linux.png
+# index_img: /img/acrodesign/linux.png
 categories:
 - Linux
 tags:

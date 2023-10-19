@@ -1,6 +1,6 @@
 ---
 title: 初试nginx
-index_img: /img/acrodesign/nginx.png
+# index_img: /img/acrodesign/nginx.png
 categories:
 - Nginx
 ---

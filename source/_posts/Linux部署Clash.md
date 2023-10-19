@@ -1,6 +1,6 @@
 ---
 title: Linux部署Clash
-index_img: /img/acrodesign/clash.png
+# index_img: /img/acrodesign/clash.png
 categories:
 - Linux
 tags:

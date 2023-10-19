@@ -1,6 +1,6 @@
 ---
 title: Linux备忘录
-index_img: /img/acrodesign/linux.png
+# index_img: /img/acrodesign/linux.png
 categories:
 - Linux
 ---

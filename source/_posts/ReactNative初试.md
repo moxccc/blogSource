@@ -1,8 +1,8 @@
 ---
 title: ReactNative初试
-index_img: /img/acrodesign/reactnative.png
+# index_img: /img/acrodesign/reactnative.png
 date: 2023-09-15 13:38:28
-tags:
+tags: ReactNative
 categories:
 - ReactNative
 ---
