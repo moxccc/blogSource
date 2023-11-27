@@ -73,11 +73,10 @@ docker pull yidadaa/chatgpt-next-web
 
 6. 部署项目并设置代理
 ```
-docker run -d -p 3000:3000 \
-   -e OPENAI_API_KEY="sk-xxxx" \
-   -e CODE="页面访问密码" \
-   --net=host \
-   -e PROXY_URL="http://127.0.0.1:7890" \
+docker run  --restart=always -d -p 3000:3000 \
+   -e OPENAI_API_KEY="sk-xxx" \
+   -e CODE="781187" \
+   -e PROXY_URL="http://127.0.0.1:1080" \
    yidadaa/chatgpt-next-web
 ```
 
