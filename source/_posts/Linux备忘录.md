@@ -6,7 +6,7 @@ categories:
 ---
 
 ## 前言
-{% note info %}
+{% note success %}
     linux命令长时间不写就会忘记，所以写篇博客记录一下！
 {% endnote %}
 

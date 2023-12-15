@@ -103,5 +103,5 @@ theme: "fluid"
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:moxccc/moxccc.github.io.git
+  repo: git@github.com:moxccc/blog.git
   branch: gh-pages
