@@ -23,6 +23,31 @@
   
   
   <entry>
+    <title>vue3+vite+ts 常见问题汇总</title>
+    <link href="/2023/12/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
+    <url>/2023/12/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>  为什么写这样一篇文章呢，说到底是被折磨的受不了了，每次创建项目，东西还没怎么写就这报错那报错，烦的一批。所以呢趁着有时间赶紧把这些问题都给它集中起来，以后遇到直接看就行了，不用东搜西搜浪费时间！</p><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="1-VsCode-写方法出现-event-gt"><a href="#1-VsCode-写方法出现-event-gt" class="headerlink" title="1. VsCode 写方法出现  @event=&gt;"></a>1. VsCode 写方法出现  <code>@event=&gt;</code></h3><p> 在 Vue 中的点击事件 @click 后会自动补全一段“ <code>$event =&gt;</code> ”，这是 VSCode 中setting.json未设置好的缘故</p><p> <img src="/../img/blogimg/4-20/4-20-1.png"><br><em><strong>解决方案</strong></em></p><blockquote><p>点击设置-扩展-Inlay Hints: Event Argument In Inline Handlers 把他的勾选取消即可</p></blockquote><h3 id="2-vue文件引入正确-却出现红色错误波浪线"><a href="#2-vue文件引入正确-却出现红色错误波浪线" class="headerlink" title="2. vue文件引入正确 却出现红色错误波浪线"></a>2. vue文件引入正确 却出现红色错误波浪线</h3><p>在 Vue 文件中，引入外部文件不管你正确不正确都会出现红色的波浪线，产生这个问题的原因是我们使用了ts语法，他只能识别.ts文件，并不能识别.vue文件，所以在引入组件的时候报错了</p><p><img src="/../img/blogimg/4-20/4-20-2.png"></p><p><em><strong>解决方案</strong></em></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//在 vite-env.d.ts 添加如下代码</span><br><br>declare <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;*.vue&quot;</span> &#123;<br>    <span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">App</span>, defineComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">component</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> defineComponent&gt; &amp; &#123;<br>        <span class="hljs-title function_">install</span>(<span class="hljs-attr">app</span>: <span class="hljs-title class_">App</span>): <span class="hljs-keyword">void</span>;<br>    &#125;;<br>    <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> component;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="2-vue文件引入-“-store-“-出现红色波浪线"><a href="#2-vue文件引入-“-store-“-出现红色波浪线" class="headerlink" title="2. vue文件引入 “ @/store “ 出现红色波浪线"></a>2. vue文件引入 “ <code>@/store</code> “ 出现红色波浪线</h3><p>找不到模块“@&#x2F;…”或其相应的类型声明</p><p><em><strong>解决方案</strong></em></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//在 tsconfig.json 中添加配置</span><br><span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;./&quot;</span>,<span class="hljs-comment">// 解析非相对模块的基础地址，默认是当前目录</span><br>    <span class="hljs-string">&quot;paths&quot;</span>: &#123;<br>    <span class="hljs-comment">// 路径映射，相对于baseUrl</span><br>      <span class="hljs-string">&quot;@/*&quot;</span>:[<span class="hljs-string">&quot;src/*&quot;</span>]<br>    &#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Vue3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>问题汇总</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Vue3 使用ArcoDesign</title>
     <link href="/2023/12/15/vue3-ArcoDesign/"/>
     <url>/2023/12/15/vue3-ArcoDesign/</url>
@@ -61,31 +86,6 @@
       
     </categories>
     
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>vue3+vite+ts 常见问题汇总</title>
-    <link href="/2023/12/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
-    <url>/2023/12/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
-    
-    <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>  为什么写这样一篇文章呢，说到底是被折磨的受不了了，每次创建项目，东西还没怎么写就这报错那报错，烦的一批。所以呢趁着有时间赶紧把这些问题都给它集中起来，以后遇到直接看就行了，不用东搜西搜浪费时间！</p><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="1-VsCode-写方法出现-event-gt"><a href="#1-VsCode-写方法出现-event-gt" class="headerlink" title="1. VsCode 写方法出现  @event=&gt;"></a>1. VsCode 写方法出现  <code>@event=&gt;</code></h3><p> 在 Vue 中的点击事件 @click 后会自动补全一段“ <code>$event =&gt;</code> ”，这是 VSCode 中setting.json未设置好的缘故</p><p> <img src="/../img/blogimg/4-20/4-20-1.png"><br><em><strong>解决方案</strong></em></p><blockquote><p>点击设置-扩展-Inlay Hints: Event Argument In Inline Handlers 把他的勾选取消即可</p></blockquote><h3 id="2-vue文件引入正确-却出现红色错误波浪线"><a href="#2-vue文件引入正确-却出现红色错误波浪线" class="headerlink" title="2. vue文件引入正确 却出现红色错误波浪线"></a>2. vue文件引入正确 却出现红色错误波浪线</h3><p>在 Vue 文件中，引入外部文件不管你正确不正确都会出现红色的波浪线，产生这个问题的原因是我们使用了ts语法，他只能识别.ts文件，并不能识别.vue文件，所以在引入组件的时候报错了</p><p><img src="/../img/blogimg/4-20/4-20-2.png"></p><p><em><strong>解决方案</strong></em></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//在 vite-env.d.ts 添加如下代码</span><br><br>declare <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;*.vue&quot;</span> &#123;<br>    <span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">App</span>, defineComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">component</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> defineComponent&gt; &amp; &#123;<br>        <span class="hljs-title function_">install</span>(<span class="hljs-attr">app</span>: <span class="hljs-title class_">App</span>): <span class="hljs-keyword">void</span>;<br>    &#125;;<br>    <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> component;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="2-vue文件引入-“-store-“-出现红色波浪线"><a href="#2-vue文件引入-“-store-“-出现红色波浪线" class="headerlink" title="2. vue文件引入 “ @/store “ 出现红色波浪线"></a>2. vue文件引入 “ <code>@/store</code> “ 出现红色波浪线</h3><p>找不到模块“@&#x2F;…”或其相应的类型声明</p><p><em><strong>解决方案</strong></em></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//在 tsconfig.json 中添加配置</span><br><span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;./&quot;</span>,<span class="hljs-comment">// 解析非相对模块的基础地址，默认是当前目录</span><br>    <span class="hljs-string">&quot;paths&quot;</span>: &#123;<br>    <span class="hljs-comment">// 路径映射，相对于baseUrl</span><br>      <span class="hljs-string">&quot;@/*&quot;</span>:[<span class="hljs-string">&quot;src/*&quot;</span>]<br>    &#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>Vue3</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>问题汇总</tag>
-      
-    </tags>
     
   </entry>
   
