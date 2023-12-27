@@ -95,6 +95,10 @@ Android 输入 a 即可
 ```
 npx react-native run-android --port=1234
 ```
+构建命令
+```
+npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+```
 {% endnote %}
 
 

@@ -11,7 +11,7 @@ tags:
 ## 前言
 {% note success %}
 
-白嫖的ssl证书谁能不爱呢，还可以设置自动续期，基本上算是永久的，话不多说，看我表演。
+免费的ssl证书谁能不爱呢，还可以设置自动续期，基本上算是永久的，话不多说，看我表演。
 
 {% endnote %}
 
@@ -55,7 +55,7 @@ acme.sh  --issue -d moxccc.com  -d '*.moxccc.com'  --dns dns_ali
 ## 查看证书信息
 
 ```LINUX
-acme.sh --info -d dreamogi.com
+acme.sh --info -d moxccc.com
 ```
 
 ## 自动续期
@@ -63,15 +63,16 @@ acme.sh --info -d dreamogi.com
 由于证书的有效期为3个月,所以需要进行自动续期，具体内容参见[How to renew the certs](https://github.com/acmesh-official/acme.sh#12-how-to-renew-the-certs)
 
 ```LINUX
-acme.sh --renew -d dreamogi.com --force
+acme.sh --renew -d moxccc.com --force
 ```
 
 ## 生成证书后重载Nginx
 
 ```LINUX
-acme.sh --install-cert -d dreamogi.com \
---key-file       /path/to/keyfile/in/nginx/key.pem  \
---fullchain-file /path/to/fullchain/nginx/cert.pem \
+
+acme.sh --install-cert -d moxccc.com 
+--key-file       /root/.acme.sh/moxccc.com_ecc/moxccc.com.key  
+--fullchain-file /root/.acme.sh/moxccc.com_ecc/fullchain.cer        
 --reloadcmd     "service nginx force-reload"
 ```
 
