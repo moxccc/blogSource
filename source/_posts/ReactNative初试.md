@@ -101,6 +101,68 @@ npx react-native bundle --platform android --dev false --entry-file index.js --b
 ```
 {% endnote %}
 
+#### 打包
+**1. 生成签名秘钥：**
+你可以用keytool命令生成一个私有密钥。在Windows上keytool命令放在JDK的bin目录中（比如`..\jdkx.x.x_x\bin`），
+进入你放`JDK`的目录，点文件地址栏输入`cmd` 接着输入以下命令 按提示操作即可
+
+```
+    $ keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+```
+* 这条命令会要求你输入密钥库（keystore）和对应密钥的密码，然后设置一些发行相关的信息。最后它会生成一个叫做`my-release-key.keystore`的密钥库文件。
+* 在运行上面这条语句之后，密钥库里应该已经生成了一个单独的密钥，有效期为10000天。--alias参数后面的别名是你将来为应用签名时所需要用到的，所以记得记录这个别名。
+
+**2. 设置gradle变量：**
+把`my-release-key.keystore`文件放到你工程中的`android/app`文件夹下。
+编辑`android/gradle.properties`（没有这个文件你就创建一个），添加如下的代码（注意把其中的****替换为相应密码）
+```
+MYAPP_RELEASE_STORE_FILE=my-release-key.keystore
+MYAPP_RELEASE_KEY_ALIAS=my-key-alias
+MYAPP_RELEASE_STORE_PASSWORD=*****
+MYAPP_RELEASE_KEY_PASSWORD=*****
+```
+
+**3. 添加签名到应用的gradle配置中：**
+编辑你项目目录下的`android/app/build.gradle`，添加如下的签名配置：
+```
+...
+android {
+    ...
+    defaultConfig { ... }
+    signingConfigs {
+        release {
+            storeFile file("my-release-key.keystore")
+            storePassword ******
+            keyAlias "my-key-alias"
+            keyPassword ******
+        }
+    }
+    buildTypes {
+        release {
+            ...
+            signingConfig signingConfigs.release
+        }
+    }
+}
+...
+```
+**4.打包：**
+打包的话需要注意，在打包之前要先将`android\app\src\main\res`文件下所有`drawable-*`的文件全部删掉 否则会报错。
+准备好之后，进入`android`文件夹，输入`cmd` 进入命令行，运行打包`gradlew assembleRelease` 即可。
+为了加快效率 ，我这边是我们后端给我创建了一个bat的命令行进行的，只需要点击一下即可开始打包，如有需要自取，文件放置在`\android`目录下即可。
+```
+//  *** 这里写的是你放置项目文件的绝对路径 从盘开始 例如C:\Program Files
+
+rmdir /s /q "***\android\app\src\main\res\drawable-hdpi"
+rmdir /s /q "***\android\app\src\main\res\drawable-mdpi"
+rmdir /s /q "***\android\app\src\main\res\drawable-xhdpi"
+rmdir /s /q "***\android\app\src\main\res\drawable-xxhdpi"
+rmdir /s /q "***\android\app\src\main\res\drawable-xxxhdpi"
+
+start gradlew.bat assembleRelease
+```
+
+
 
 
 ### iOS
