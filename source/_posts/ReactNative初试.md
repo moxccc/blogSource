@@ -161,6 +161,7 @@ rmdir /s /q "***\android\app\src\main\res\drawable-xxxhdpi"
 
 start gradlew.bat assembleRelease
 ```
+生成的 APK 文件位于`android/app/build/outputs/apk/release/app-release.apk`，它已经可以用来发布了。
 
 
 
