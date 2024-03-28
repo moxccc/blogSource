@@ -33,6 +33,7 @@ export const htmlToPDF = async (htmlId, title= "报表", bgColor = "#fff", paddi
         useCORS: true,
         backgroundColor: bgColor,
     });
+    //canvas.width / A4Width 计算出缩放比例 即画布宽度相对于 A4 纸宽度的比例
     let pageHeight = (canvas.width / A4Width) * A4Height;
     let leftHeight = canvas.height;
     let position = 0;
