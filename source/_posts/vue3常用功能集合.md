@@ -12,7 +12,7 @@ tags:
 我们在敲代码过程中会遇到一些常见的功能，列如：导出pdf,因为比较常用，代码又繁琐，所以发篇文章记录一下，省的每次找麻烦。
 {% endnote %}
 
-### vue 导出PDF
+### 导出PDF
 1. 引入组件[jspdf](https://www.npmjs.com/package/jspdf)、[html2canvas](https://www.npmjs.com/package/html2canvas/v/1.4.1)，jspdf-用于生成各种用途的PDF，html2canvas-可以将HTML 元素转换为Canvas。
 ```
 npm i html2canvas
