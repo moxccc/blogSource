@@ -48,11 +48,20 @@ export const htmlToPDF = async (htmlId, title= "报表", bgColor = "#fff", paddi
         // 控制内边距
         PDF.addImage(pageData, "JPEG", 10, 20, imgWidth, imgHeight);
     } else {
+        let pageImgIndex=0;
         while (leftHeight > 0) {
-            PDF.addImage(pageData, "JPEG", 10, 20, imgWidth, imgHeight);
+            canvas = await html2canvas(pdfDom, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: bgColor,
+            });
+            let pageData = canvas.toDataURL("image/jpeg", 1.0);
+            // -A4Height*pageImgIndex 每页的起始位置 20距顶部
+            PDF.addImage(pageData, "JPEG", 10, -A4Height*pageImgIndex+20, imgWidth, imgHeight);
             leftHeight -= pageHeight;
             position -= A4Height;
             if (leftHeight > 0) PDF.addPage();
+            pageImgIndex+=1;
         }
     }
     PDF.save(title + ".pdf");
